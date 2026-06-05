@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LupaSearch\Api;
 
+use JsonSerializable;
 use LupaSearch\LupaClientInterface;
 use LupaSearch\Utils\JsonUtils;
 
@@ -28,7 +29,7 @@ class RulesApi
         );
     }
 
-    public function createSearchQueryRule(string $indexId, string $searchQueryId, array $httpBody): array
+    public function createSearchQueryRule(string $indexId, string $searchQueryId, JsonSerializable|array $httpBody): array
     {
         return $this->client->send(
             LupaClientInterface::METHOD_POST,
@@ -51,7 +52,7 @@ class RulesApi
         string $indexId,
         string $searchQueryId,
         string $ruleId,
-        array $httpBody
+        JsonSerializable|array $httpBody
     ): array {
         return $this->client->send(
             LupaClientInterface::METHOD_PUT,

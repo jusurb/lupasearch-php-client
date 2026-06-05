@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LupaSearch\Api;
 
+use JsonSerializable;
 use LupaSearch\LupaClientInterface;
 use LupaSearch\Utils\JsonUtils;
 
@@ -21,7 +22,7 @@ class PublicQueryApi
         $this->client = $client;
     }
 
-    public function search(string $queryKey, array $httpBody): array
+    public function search(string $queryKey, JsonSerializable|array $httpBody): array
     {
         return $this->client->send(
             LupaClientInterface::METHOD_POST,
@@ -31,7 +32,7 @@ class PublicQueryApi
         );
     }
 
-    public function getFacets(string $queryKey, array $httpBody): array
+    public function getFacets(string $queryKey, JsonSerializable|array $httpBody): array
     {
         return $this->client->send(
             LupaClientInterface::METHOD_POST,
@@ -43,7 +44,7 @@ class PublicQueryApi
 
     /**
      * @param string $queryKey Unique search query key
-     * @param array{
+     * @param JsonSerializable|array{
      *     searchText?: string,
      *     selectFields?: string[],
      *     filters?: array<string, mixed>,
@@ -67,7 +68,7 @@ class PublicQueryApi
      *     action: string,
      * }>}
      */
-    public function getRelatedQueries(string $queryKey, array $httpBody): array
+    public function getRelatedQueries(string $queryKey, JsonSerializable|array $httpBody): array
     {
         return $this->client->send(
             LupaClientInterface::METHOD_POST,

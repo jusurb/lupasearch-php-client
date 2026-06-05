@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LupaSearch\Api;
 
+use JsonSerializable;
 use LupaSearch\LupaClientInterface;
 use LupaSearch\Utils\JsonUtils;
 
@@ -24,7 +25,7 @@ class CustomSuggestionsApi
         return $this->client->send(LupaClientInterface::METHOD_GET, "/indices/$indexId/customSuggestions", true);
     }
 
-    public function createCustomSuggestions(string $indexId, array $httpBody): array
+    public function createCustomSuggestions(string $indexId, JsonSerializable|array $httpBody): array
     {
         return $this->client->send(
             LupaClientInterface::METHOD_POST,
@@ -34,7 +35,7 @@ class CustomSuggestionsApi
         );
     }
 
-    public function deleteCustomSuggestions(string $indexId, array $httpBody): void
+    public function deleteCustomSuggestions(string $indexId, JsonSerializable|array $httpBody): void
     {
         $this->client->send(
             LupaClientInterface::METHOD_POST,

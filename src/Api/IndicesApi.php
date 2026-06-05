@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LupaSearch\Api;
 
+use JsonSerializable;
 use LupaSearch\LupaClientInterface;
 use LupaSearch\Utils\JsonUtils;
 
@@ -21,7 +22,7 @@ class IndicesApi
         $this->client = $client;
     }
 
-    public function createIndex(string $organizationSlug, string $projectSlug, array $httpBody): array
+    public function createIndex(string $organizationSlug, string $projectSlug, JsonSerializable|array $httpBody): array
     {
         return $this->client->send(
             LupaClientInterface::METHOD_POST,
@@ -45,7 +46,7 @@ class IndicesApi
         return $this->client->send(LupaClientInterface::METHOD_GET, "/indices/$indexId", true);
     }
 
-    public function updateIndex(string $indexId, array $httpBody): array
+    public function updateIndex(string $indexId, JsonSerializable|array $httpBody): array
     {
         return $this->client->send(
             LupaClientInterface::METHOD_PUT,

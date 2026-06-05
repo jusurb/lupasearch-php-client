@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace LupaSearch\Api;
 
 use LupaSearch\Exceptions\BadResponseException;
+use JsonSerializable;
 use LupaSearch\LupaClientInterface;
 use LupaSearch\Utils\JsonUtils;
 
@@ -58,7 +59,7 @@ class DocumentsApi
         );
     }
 
-    public function importDocuments(string $indexId, array $httpBody): array
+    public function importDocuments(string $indexId, JsonSerializable|array $httpBody): array
     {
         return $this->client->send(
             LupaClientInterface::METHOD_POST,
@@ -68,7 +69,7 @@ class DocumentsApi
         );
     }
 
-    public function updateDocuments(string $indexId, array $httpBody): array
+    public function updateDocuments(string $indexId, JsonSerializable|array $httpBody): array
     {
         return $this->client->send(
             LupaClientInterface::METHOD_PATCH,
@@ -78,7 +79,7 @@ class DocumentsApi
         );
     }
 
-    public function replaceAllDocuments(string $indexId, array $httpBody): array
+    public function replaceAllDocuments(string $indexId, JsonSerializable|array $httpBody): array
     {
         return $this->client->send(
             LupaClientInterface::METHOD_POST,
@@ -88,7 +89,7 @@ class DocumentsApi
         );
     }
 
-    public function batchDelete(string $indexId, array $httpBody): void
+    public function batchDelete(string $indexId, JsonSerializable|array $httpBody): void
     {
         $this->client->send(
             LupaClientInterface::METHOD_POST,

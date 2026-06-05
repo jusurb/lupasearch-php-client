@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LupaSearch\Api;
 
+use JsonSerializable;
 use LupaSearch\LupaClientInterface;
 use LupaSearch\Utils\JsonUtils;
 
@@ -24,7 +25,7 @@ class KeywordsApi
         return $this->client->send(LupaClientInterface::METHOD_GET, "/indices/$indexId/keywords", true);
     }
 
-    public function createKeywords(string $indexId, array $httpBody): array
+    public function createKeywords(string $indexId, JsonSerializable|array $httpBody): array
     {
         return $this->client->send(
             LupaClientInterface::METHOD_POST,
@@ -34,7 +35,7 @@ class KeywordsApi
         );
     }
 
-    public function deleteKeywords(string $indexId, array $httpBody): array
+    public function deleteKeywords(string $indexId, JsonSerializable|array $httpBody): array
     {
         return $this->client->send(
             LupaClientInterface::METHOD_POST,

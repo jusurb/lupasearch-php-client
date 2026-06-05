@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LupaSearch\Api;
 
+use JsonSerializable;
 use LupaSearch\LupaClientInterface;
 use LupaSearch\Utils\JsonUtils;
 
@@ -26,7 +27,7 @@ class SynonymsApi
         return $this->client->send(LupaClientInterface::METHOD_GET, "/indices/$indexId/synonyms", true);
     }
 
-    public function createSynonyms(string $indexId, array $httpBody): array
+    public function createSynonyms(string $indexId, JsonSerializable|array $httpBody): array
     {
         return $this->client->send(
             LupaClientInterface::METHOD_POST,
@@ -36,7 +37,7 @@ class SynonymsApi
         );
     }
 
-    public function deleteSynonyms(string $indexId, array $httpBody): array
+    public function deleteSynonyms(string $indexId, JsonSerializable|array $httpBody): array
     {
         return $this->client->send(
             LupaClientInterface::METHOD_POST,

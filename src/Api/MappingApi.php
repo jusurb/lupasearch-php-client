@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LupaSearch\Api;
 
+use JsonSerializable;
 use LupaSearch\LupaClientInterface;
 use LupaSearch\Utils\JsonUtils;
 
@@ -19,7 +20,7 @@ class MappingApi
         $this->client = $client;
     }
 
-    public function createMapping(string $indexId, array $httpBody): void
+    public function createMapping(string $indexId, JsonSerializable|array $httpBody): void
     {
         $this->client->send(
             LupaClientInterface::METHOD_POST,
@@ -29,7 +30,7 @@ class MappingApi
         );
     }
 
-    public function updateMapping(string $indexId, array $httpBody): void
+    public function updateMapping(string $indexId, JsonSerializable|array $httpBody): void
     {
         $this->client->send(
             LupaClientInterface::METHOD_PUT,

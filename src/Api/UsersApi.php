@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LupaSearch\Api;
 
+use JsonSerializable;
 use LupaSearch\LupaClientInterface;
 use LupaSearch\Utils\JsonUtils;
 
@@ -32,7 +33,7 @@ class UsersApi
         );
     }
 
-    public function createOrganizationUser(string $organizationSlug, array $httpBody): array
+    public function createOrganizationUser(string $organizationSlug, JsonSerializable|array $httpBody): array
     {
         return $this->client->send(
             LupaClientInterface::METHOD_POST,
@@ -42,7 +43,7 @@ class UsersApi
         );
     }
 
-    public function updateOrganizationUser(string $organizationSlug, string $userId, array $httpBody): array
+    public function updateOrganizationUser(string $organizationSlug, string $userId, JsonSerializable|array $httpBody): array
     {
         return $this->client->send(
             LupaClientInterface::METHOD_POST,

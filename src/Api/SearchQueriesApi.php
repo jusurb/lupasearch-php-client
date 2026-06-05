@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LupaSearch\Api;
 
+use JsonSerializable;
 use LupaSearch\LupaClientInterface;
 use LupaSearch\Utils\JsonUtils;
 
@@ -24,7 +25,7 @@ class SearchQueriesApi
         return $this->client->send(LupaClientInterface::METHOD_GET, "/indices/$indexId/queries", true);
     }
 
-    public function createSearchQuery(string $indexId, array $httpBody): array
+    public function createSearchQuery(string $indexId, JsonSerializable|array $httpBody): array
     {
         return $this->client->send(
             LupaClientInterface::METHOD_POST,
@@ -39,7 +40,7 @@ class SearchQueriesApi
         return $this->client->send(LupaClientInterface::METHOD_GET, "/indices/$indexId/queries/$searchQueryId", true);
     }
 
-    public function updateSearchQuery(string $indexId, string $searchQueryId, array $httpBody): array
+    public function updateSearchQuery(string $indexId, string $searchQueryId, JsonSerializable|array $httpBody): array
     {
         return $this->client->send(
             LupaClientInterface::METHOD_PUT,
